@@ -55,10 +55,10 @@ class GroupController extends Controller
     public function actionView($id)
     {
         $model = new Ocenka();
-        $groups = $model->getGroupLists($id);
+        $ocenkas = $model->getGroupLists($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'groups' => $groups
+            'ocenkas' => $ocenkas
         ]);
     }
 

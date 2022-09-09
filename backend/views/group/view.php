@@ -28,7 +28,7 @@ $numbercolumn = 0;
             ],
         ],
     ]) ?>
-    <h1>Студенты обучающиеся в группе</h1>
+    <h1>Ученики обучающиеся в группе</h1>
     <table class="table table-striped table-bordered detail-view" id="w3">
         <tbody>
         <tr>
@@ -37,20 +37,33 @@ $numbercolumn = 0;
             <th>Предмет</th>
             <th>Преподаватель</th>
             <th>Оценка</th>
+            <th></th>
         </tr>
         <?php $count = 1;?>
-        <?php foreach($groups as $group){ ?>
+        <?php foreach($ocenkas as $ocenka){ ?>
             <tr>
                 <td><?php echo $count++; ?></td>
-                <td><?php echo $group->student->fullName ?></td>
-                <td><?php echo $group->predmet->name ?></td>
-                <td><?php echo $group->prepod->fullName ?></td>
-                <td><?php echo $group->mark ?></td>
+                <td>
+                    <a href="/student/view?id=<?= $ocenka->student_id ?>" target="_blank"><?php echo $ocenka->student->fullName ?></a>
+                </td>
+                <td>
+                    <a href="/predmet/view?id=<?= $ocenka->predmet_id ?>" target="_blank"><?php echo $ocenka->predmet->name ?></a>
+                </td>
+                <td>
+                    <a href="/prepod/view?id=<?= $ocenka->prepod_id ?>" target="_blank"><?php echo $ocenka->prepod->fullName ?></a>
+                </td>
+                <td>
+                    <a href="/ocenka/view?id=<?= $ocenka->id ?>" target="_blank"><?php echo $ocenka->mark ?></a>
+                </td>
+                <td>
+                    <a href="/ocenka/update?id=<?= $ocenka->id ?>" target="_blank">✏️</a>
+                </td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
     <p>
+        <?= Html::a('Добавить новую группу', ['group/create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -59,7 +72,6 @@ $numbercolumn = 0;
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Создать новую группу', ['group/create'], ['class' => 'btn btn-light']) ?>
-        <?= Html::a('Добавить студента', ['student/create'], ['class' => 'btn btn-light']) ?>
+        <?= Html::a('Добавить ученика', ['student/create'], ['class' => 'btn btn-light']) ?>
     </p>
 </div>

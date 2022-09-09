@@ -15,14 +15,11 @@ use yii\widgets\ActiveForm;
 
 <div class="ocenka-form">
     <?php $form = ActiveForm::begin(); ?>
-    <?php
-
-    ?>
 
     <?= $form->field($model, 'group_id')->dropDownList($groups,[
         'prompt'=>'Выбрать группу',
         'onchange'=>'
-        $.post("'.Yii::$app->urlManager->createUrl('ocenka/lists?id=').
+        $.post("'.Yii::$app->urlManager->createUrl('ocenka/lists?group_id=').
             '"+$(this).val(),function( data ) 
             {
                 $( "select#ocenka-student_id" ).html( data ).attr("disabled", false);
@@ -31,19 +28,19 @@ use yii\widgets\ActiveForm;
     ?>
 
     <?= $form->field($model, 'student_id')->
-    dropDownList($studs,['prompt'=>'Выбрать студента','disabled' => 'disabled']) ?>
+    dropDownList($studs,['prompt'=>'Выбрать ученика','disabled' => 'disabled']) ?>
 
-    <?= $form->field($model, 'prepod_id')->dropDownList($prepods,[
-        'prompt'=>'Выбрать преподователя',
+    <?= $form->field($model, 'predmet_id')->dropDownList($predmets,[
+        'prompt'=>'Выбрать предмет',
         'onchange'=>'
-        $.post("'.Yii::$app->urlManager->createUrl('ocenka/predmets?id=').
+        $.post("'.Yii::$app->urlManager->createUrl('ocenka/predmets?prepod_id=').
             '"+$(this).val(),function( data ) 
             {
-                $( "select#ocenka-predmet_id" ).html( data ).attr("disabled", false);
+                $( "select#ocenka-prepod_id" ).html( data ).attr("disabled", false);
             });
             '])?>
 
-    <?= $form->field($model, 'predmet_id')->dropDownList($predmets,['prompt'=>'Выбрать предмет','disabled' => 'disabled']) ?>
+    <?= $form->field($model, 'prepod_id')->dropDownList($prepods,['prompt'=>'Выбрать преподователя','disabled' => 'disabled']) ?>
 
     <?= $form->field($model, 'date')->textInput(['value' => date("d.m.Y"),'disabled' => 'disabled']);?>
 

@@ -42,7 +42,7 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'Админка', 'items' => [
-                ['label' => 'Студенты', 'url' => ['/student']],
+                ['label' => 'Ученики', 'url' => ['/student']],
                 ['label' => 'Преподаватель', 'url' => ['/prepod']],
                 ['label' => 'Предметы', 'url' => ['/predmet']],
                 ['label' => 'Оценки', 'url' => ['/ocenka']],

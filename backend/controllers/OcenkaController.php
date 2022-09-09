@@ -82,11 +82,9 @@ class OcenkaController extends Controller
     public function actionCreate()
     {
         $model = new ocenka();
-        $Student = new Student();
 
         $groups = ArrayHelper::map(Group::find()->all(), 'id', 'name');
         $prepods = ArrayHelper::map(Prepod::find()->all(), 'id', 'fullName');
-//        $dataStudent = ArrayHelper::map(Student::find()->asArray()->all(), 'id', 'fname');
         $predmets = Predmet::find()->select(['name','id'])->indexBy('id')->column();
         $items = ['0' => '-','1' => 'НБ','2'=>'2 - БЫВАЕТ','3'=> '3 - НАМАНА','4'=>'4 - ХАРОЩО','5'=>'5 - КРАСИВО'];
         $studs = Student::findBySql("SELECT concat(student.fname, ' ', student.name) AS fullname, id FROM `Student`")->indexBy('id')->column();
@@ -97,21 +95,18 @@ class OcenkaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'Student' => $Student,
             'groups' => $groups,
             'prepods' => $prepods,
             'predmets' => $predmets,
-//            'dataStudent' => $dataStudent,
             'studs' => $studs,
             'items' => $items,
-
         ]);
     }
 
-    public function actionLists($id)
+    public function actionLists($group_id)
     {
         $model = new Ocenka();
-        $prepods = $model->getStudentGroupLists($id);
+        $prepods = $model->getStudentGroupLists($group_id);
 
         if(sizeof($prepods) >0){
             echo "<option>Выбрать студента</option>";
@@ -124,19 +119,19 @@ class OcenkaController extends Controller
         }
     }
 
-    public function actionPredmets($id)
+    public function actionPredmets($prepod_id)
     {
         $model = new Ocenka();
-        $predmets = $model->getPrepodPredemetLists($id);
+        $predmets = $model->getPrepodPredemetLists($prepod_id);
 
         if(sizeof($predmets) >0){
-            echo "<option>Выбрать предмет</option>";
+            echo "<option>Выбрать преподавателя</option>";
             foreach($predmets as $model){
-                echo "<option value='".$model['id']."'>".$model['name']."</option>";
+                echo "<option value='".$model['id']."'>".$model['fname']. ' ' .$model['name']. ' ' .$model['sname']."</option>";
             }
         }
         else{
-            echo "<option>Выбрать предмет</option><option></option>";
+            echo "<option>Выбрать преподавателя</option><option></option>";
         }
     }
 
@@ -150,6 +145,11 @@ class OcenkaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $groups = ArrayHelper::map(Group::find()->all(), 'id', 'name');
+        $prepods = ArrayHelper::map(Prepod::find()->all(), 'id', 'fullName');
+        $predmets = Predmet::find()->select(['name','id'])->indexBy('id')->column();
+        $items = ['0' => '-','1' => 'НБ','2'=>'2 - БЫВАЕТ','3'=> '3 - НАМАНА','4'=>'4 - ХАРОЩО','5'=>'5 - КРАСИВО'];
+        $studs = Student::findBySql("SELECT concat(student.fname, ' ', student.name) AS fullname, id FROM `Student`")->indexBy('id')->column();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -157,6 +157,11 @@ class OcenkaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'groups' => $groups,
+            'predmets' => $predmets,
+            'prepods' => $prepods,
+            'studs' => $studs,
+            'items' => $items,
         ]);
     }
 

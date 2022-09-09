@@ -54,7 +54,7 @@ class Ocenka extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'group_id' => 'Группа',
-            'student_id' => 'Студент',
+            'student_id' => 'Ученик',
             'prepod_id' => 'Преподователь',
             'predmet_id' => 'Предмет',
             'date' => 'Дата',
@@ -112,8 +112,8 @@ class Ocenka extends \yii\db\ActiveRecord
         return $query;
     }
 
-    public function getPrepodPredemetLists($id){
-        $query = Predmet::find()->where(['id' => $id])->asArray()->all();
+    public function getPrepodPredemetLists($predmet_id){
+        $query = Prepod::find()->where(['predmet_id' => $predmet_id])->asArray()->all();
         return $query;
     }
 

@@ -9,7 +9,7 @@ use backend\models\Predmet;
 /* @var $model backend\models\student */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Студенты', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Ученики', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $img_format = function ($model) {
@@ -62,6 +62,7 @@ $img_format = function ($model) {
     <h2>Общий средний балл <?=$mean?></h2>
 
     <p>
+        <?= Html::a('Добавить нового студента', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',

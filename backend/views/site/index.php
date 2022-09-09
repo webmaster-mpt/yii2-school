@@ -32,27 +32,6 @@ $this->title = 'Школа';
     }
 </style>
 <div class="site-index">
-    <div>
-        <h1>Список студентов</h1>
-        <?php foreach($students as $student){ ?>
-            <div class="btn btn-primary">
-                <a id="students" href="<?= Yii::$app->urlManager->
-                createUrl(['student/view', 'id' => $student->id]);?>">
-                    <? echo $student->name?></a>
-            </div>
-        <?php } ?>
-    </div>
-    <div>
-        <?php
-        foreach($groups as $group){?>
-            <h1>Список групп</h1>
-            <div class="btn btn-primary">
-                <a id="groups" href="<?= Yii::$app->urlManager->
-                createUrl(['group/view', 'id' => $group->id]);?>">
-                    <? echo $group->name?></a>
-            </div>
-        <?php } ?>
-    </div>
     <h1>Журнал оценок</h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -75,7 +54,7 @@ $this->title = 'Школа';
                     return Html::a(Html::encode($model->student->fullName), \yii\helpers\Url::to(['/student/view', 'id' => $model->student_id]));
                 },
                 'format' => 'raw',
-                'label'=>'Студент'
+                'label'=>'Ученик'
             ],
             [
                 'attribute'=>'prepod_id',

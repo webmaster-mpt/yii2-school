@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a(Html::encode($model->student->fullName), \yii\helpers\Url::to(['/student/view', 'id' => $model->student_id]));
                 },
                 'format' => 'raw',
-                'label'=>'Студент'
+                'label'=>'Ученик'
             ],
             [
                 'attribute'=>'prepod_id',

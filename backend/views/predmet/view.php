@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
 
     <p>
+        <?= Html::a('Добавить нового преподавателя', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -54,7 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?= Html::a('Создать новый предмет', ['predmet/create'], ['class' => 'btn btn-light']) ?>
-        <?= Html::a('Добавить преподавателя', ['prepod/create'], ['class' => 'btn btn-light']) ?>
     </p>
 
 </div>

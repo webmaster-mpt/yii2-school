@@ -65,12 +65,7 @@ class SiteController extends Controller
         $searchModel = new OcenkaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $students = Student::find()->all();
-        $groups = Group::find()->all();
-
         return $this->render('index', [
-            'students' => $students,
-            'groups' => $groups,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider
         ]);
